@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>For My Babu ❤️</title>
+
 <style>
 body{
   margin:0;
   font-family: 'Arial', sans-serif;
-  background:linear-gradient(#ff9a9e,#fad0c4);
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
   overflow-x:hidden;
   text-align:center;
 }
@@ -16,14 +17,13 @@ body{
 #startScreen{
   position:fixed;
   inset:0;
-  background:linear-gradient(#ff758c,#ff7eb3);
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   z-index:100;
 }
-#startScreen h1{color:white;}
+#startScreen h1{color:white;font-size:2.5em;}
 #startBtn{
   padding:15px 40px;
   border:none;
@@ -31,6 +31,21 @@ body{
   font-size:18px;
   background:white;
   color:#ff2e63;
+}
+
+/* PAGE */
+.page{display:none;min-height:100vh;padding:40px;}
+.page.active{display:block;}
+h1{color:#ff2e63;}
+
+button{
+  padding:12px 25px;
+  border:none;
+  border-radius:25px;
+  background:#ff2e63;
+  color:white;
+  font-size:16px;
+  margin-top:25px;
 }
 
 /* HEART FLOAT */
@@ -64,21 +79,7 @@ body{
   animation:spark 1s linear forwards;
 }
 @keyframes spark{
-  to{transform:translateY(-40px);opacity:0;}
-}
-
-/* PAGE */
-.page{display:none; padding:40px;}
-.page.active{display:block;}
-h1{color:#ff2e63;}
-button{
-  padding:12px 25px;
-  border:none;
-  border-radius:25px;
-  background:#ff2e63;
-  color:white;
-  font-size:16px;
-  margin-top:25px;
+  to{transform:scale(3);opacity:0;}
 }
 
 /* LETTER */
@@ -105,56 +106,53 @@ button{
 
 <body>
 
-<!-- MUSIC -->
+<!-- 🎵 MUSIC -->
 <audio id="bgm" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+  <source src="song.mp3" type="audio/mpeg">
 </audio>
 
 <!-- START -->
 <div id="startScreen">
   <h1>For My Babu ❤️</h1>
-  <p style="color:white;">Tap to feel my heart</p>
-  <button id="startBtn">Start</button>
+  <p style="color:white;">Tap to begin surprise ✨</p>
+  <button id="startBtn">Start 💖</button>
 </div>
 
 <!-- PAGE 1 -->
 <div class="page active">
   <h1>Hey Babu 💕</h1>
   <div class="beat">❤️</div>
-  <p>Ye dil sirf tumhare liye dhadakta hai.</p>
-  <button onclick="nextPage()">Next</button>
+  <p>Ye dil sirf tumhare liye dhadakta hai</p>
+  <button onclick="nextPage()">Next ➡️</button>
 </div>
 
 <!-- PAGE 2 -->
 <div class="page">
   <h1>Promise 🤞</h1>
-  <p>Main tumhe kahin chhod ke nahi jaa raha.</p>
-  <button onclick="nextPage()">Next</button>
+  <p>Main tumhe kahin chhod ke nahi jaunga</p>
+  <button onclick="nextPage()">Next ➡️</button>
 </div>
 
-<!-- PAGE 3 SURPRISE -->
+<!-- PAGE 3 -->
 <div class="page">
   <h1>Tap for Surprise 🎁</h1>
-  <button onclick="surprise()">Surprise</button>
-  <div id="surpriseText">🎉 I Love You Always ❤️ 🎉</div>
-  <button onclick="nextPage()">Next</button>
+  <button onclick="surprise()">Open 🎉</button>
+  <div id="surpriseText">🎊 I Love You So Much 💖</div>
+  <button onclick="nextPage()">Next ➡️</button>
 </div>
 
-<!-- PAGE 4 LETTER -->
+<!-- PAGE 4 -->
 <div class="page">
   <h1>My Letter For You 💌</h1>
   <div class="letter">
     My love,<br><br>
-    Ye sirf ek website nahi hai,  
-    ye meri feelings ka proof hai.  
-    Tum jab bhi lonely feel karo,  
-    ya lage sab door jaa rahe hain,  
-    tab yaad rakhna — main yahin hoon.<br><br>
-
-    Main tumhe kahin chhod ke nahi jaa raha.  
-    Chahe waqt badle, situation badle,  
-    mera saath nahi badlega.<br><br>
-
+    Ye sirf ek website nahi,<br>
+    ye meri feelings ka proof hai ❤️<br><br>
+    Tum jab bhi lonely feel karo,<br>
+    ya lage sab door ja rahe hain,<br>
+    tab yaad rakhna — main yahin hoon 💕<br><br>
+    Chahe waqt badle, situations badlein,<br>
+    mera saath kabhi nahi badlega.<br><br>
     Tum meri duniya ho ❤️
   </div>
 </div>
@@ -167,19 +165,28 @@ document.getElementById("startBtn").onclick=()=>{
   setInterval(createHeart,400);
 };
 
+/* PAGES */
+let current=0;
+const pages=document.querySelectorAll(".page");
+function nextPage(){
+  pages[current].classList.remove("active");
+  current++;
+  if(current<pages.length) pages[current].classList.add("active");
+}
+
 /* HEART */
 function createHeart(){
   const h=document.createElement("div");
   h.className="heart";
   h.innerHTML="❤️";
   h.style.left=Math.random()*100+"vw";
-  h.style.fontSize=(16+Math.random()*20)+"px";
+  h.style.fontSize=(16+Math.random()*24)+"px";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
 }
 
 /* SPARKLE */
-document.addEventListener("click",(e)=>{
+document.addEventListener("click",e=>{
   for(let i=0;i<6;i++){
     let s=document.createElement("div");
     s.className="sparkle";
@@ -190,15 +197,6 @@ document.addEventListener("click",(e)=>{
   }
 });
 
-/* PAGES */
-let current=0;
-const pages=document.querySelectorAll(".page");
-function nextPage(){
-  pages[current].classList.remove("active");
-  current++;
-  if(current<pages.length) pages[current].classList.add("active");
-}
-
 /* SURPRISE */
 function surprise(){
   document.getElementById("surpriseText").style.display="block";
@@ -206,4 +204,4 @@ function surprise(){
 </script>
 
 </body>
-  </html>
+</html>
