@@ -39,6 +39,8 @@ button{
   background:inherit;
   z-index:10;
 }
+
+/* Hearts */
 .heart{
   position:fixed;
   font-size:20px;
@@ -47,6 +49,8 @@ button{
 @keyframes float{
   to{transform:translateY(-120vh);opacity:0}
 }
+
+/* Sparkle */
 .sparkle{
   position:fixed;
   width:6px;
@@ -58,6 +62,8 @@ button{
 @keyframes spark{
   to{transform:scale(3);opacity:0}
 }
+
+/* Card Flip */
 .card{
   width:260px;height:160px;margin:auto;perspective:1000px;
 }
@@ -75,22 +81,27 @@ button{
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:20px;
+  font-size:18px;
+  padding:15px;
 }
 .front{background:#ff2e63;color:white}
 .back{background:white;color:#ff2e63;transform:rotateY(180deg)}
+
+/* Surprise Popup */
 #popup{
   position:fixed;
   inset:0;
   display:none;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.8);
   justify-content:center;
   align-items:center;
 }
-#popup div{
-  background:white;
+#popup .box{
+  background:black;
+  color:white;
   padding:25px;
   border-radius:15px;
+  max-width:300px;
 }
 </style>
 </head>
@@ -103,14 +114,20 @@ button{
 
 <div id="start">
   <h1>Hey Babu ❤️</h1>
-  <p>Something special for you</p>
+  <p>This is only for you</p>
   <button onclick="startLove()">Start 💖</button>
 </div>
 
+<!-- SURPRISE POPUP -->
 <div id="popup" onclick="this.style.display='none'">
-  <div>
-    <h2>Surprise 😍</h2>
-    <p>I will never leave you ❤️</p>
+  <div class="box">
+    <h3>Hayee meri pyaari babu 🖤</h3>
+    <p>
+      Tum bohot cute ho yaar.  
+      Hayee ye aansu tum par ache nahi lagte.  
+      Mere liye ek pyari si smile kar do na.  
+      Please mujhe maaf kar do ❤️
+    </p>
   </div>
 </div>
 
@@ -134,7 +151,7 @@ button{
   <div class="card">
     <div class="inner">
       <div class="face front">Tap Me 💖</div>
-      <div class="face back">I Love You ❤️</div>
+      <div class="face back">You mean everything ❤️</div>
     </div>
   </div>
   <button onclick="nextPage()">Next ➜</button>
@@ -143,7 +160,7 @@ button{
 <!-- PAGE 4 -->
 <div class="page">
   <h1>Page 4 🤞</h1>
-  <p>Main tumhe kabhi chhod ke nahi jaunga.</p>
+  <p>Main tumhe kabhi akela mehsoos nahi hone dunga.</p>
   <button onclick="nextPage()">Next ➜</button>
 </div>
 
@@ -151,23 +168,32 @@ button{
 <div class="page">
   <h1>Page 5 💗</h1>
   <p>
-    Tum meri aadat ho, meri muskurahat ho,
-    meri taaqat ho aur meri duniya ho.
+    Tumhari ek muskurahat meri thakaan mita deti hai.  
+    Tum meri aadat ban chuki ho.
   </p>
   <button onclick="nextPage()">Next ➜</button>
 </div>
 
 <!-- PAGE 6 -->
 <div class="page">
-  <h1>Page 6 🎁</h1>
-  <button onclick="showPopup()">Surprise 💝</button><br>
+  <h1>Page 6 🖤</h1>
+  <button onclick="showPopup()">Open Surprise 💝</button><br>
   <button onclick="nextPage()">Next ➜</button>
 </div>
 
 <!-- PAGE 7 -->
 <div class="page">
   <h1>Page 7 ❤️</h1>
-  <p>Always yours. Forever. 💞</p>
+  <p>
+    Main sirf itna kehna chahta hoon ki tum meri zindagi
+    ka sabse khoobsurat hissa ho. Tumhari hansi meri
+    duniya roshan kar deti hai aur tumhara saath mujhe
+    har mushkil se ladne ki himmat deta hai. Main tumhe
+    kabhi chhod ke nahi jaunga, chahe waqt kaisa bhi ho.
+    Tumhari khushi meri priority hai aur tumhari aankhon
+    me aansu main kabhi dekhna nahi chahta. Hamesha yaad
+    rakhna, tum akeli nahi ho — main hamesha tumhare saath hoon.
+  </p>
 </div>
 
 <script>
@@ -179,19 +205,16 @@ function startLove(){
   document.getElementById("music").play();
   nextPage();
 }
-
 function nextPage(){
   if(current>=0) pages[current].classList.remove("active");
   current++;
-  if(current<pages.length){
-    pages[current].classList.add("active");
-  }
+  if(current<pages.length) pages[current].classList.add("active");
 }
-
 function showPopup(){
   document.getElementById("popup").style.display="flex";
 }
 
+/* Hearts */
 setInterval(()=>{
   let h=document.createElement("div");
   h.className="heart";
@@ -202,6 +225,7 @@ setInterval(()=>{
   setTimeout(()=>h.remove(),6000);
 },400);
 
+/* Sparkle */
 document.addEventListener("click",e=>{
   for(let i=0;i<5;i++){
     let s=document.createElement("div");
@@ -215,4 +239,4 @@ document.addEventListener("click",e=>{
 </script>
 
 </body>
-</html>
+  </html>
